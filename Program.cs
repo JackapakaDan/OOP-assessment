@@ -17,7 +17,7 @@ public class Deck
 {
 
     //Card[52]
-    public static int[] deck = new int[53];
+    public static int[] deck = new int[52];
 
     public Deck()
     {
@@ -40,14 +40,13 @@ public class Deck
         int suit = 1;
         Console.WriteLine(' ');
         int counter = 1;
-        while (counter < 52)
+        while (counter < 53)
         {
 
-            int temp = counter;
-
-            deck[counter-1] = temp;
+            //int temp = counter;
+            deck[counter-1] = counter;
             //Console.WriteLine(deck[counter].ToString());
-            Card card = new Card(temp, suit, value);
+            Card card = new Card(counter, suit, value);
             counter++;
             value++;
             if (value == 14)
@@ -126,27 +125,28 @@ class Testing
         int amountOfRiffles = random.Next(2,10);
         while (amountOfRiffles > 0)
         {
-            int[] arr1 = new int[27];
-            int[] arr2 = new int[27];
-            int[] arr3 = new int[53];
+            int[] arr1 = new int[26];
+            int[] arr2 = new int[26];
+            int[] arr3 = new int[52];
             int count = 0;
             int count1= 0;
             int count2 = 0;
             int count3 = 0;
             int count4 = 0;
-            while (count < 26)
+            int count5 = 0;
+            while (count <= 25)
             {
                 arr1[count] = Deck.deck[count];
                 count++;
             }
-            while(count2<26)
+            while(count<52 && count>=26)
             {
 
                 arr2[count2] = Deck.deck[count];
                 count++;
                 count2++;
             }
-            while (count3 < 26)
+            while (count4 < 26)
             {
 
                 if (count1 % 2 == 0)
@@ -163,8 +163,13 @@ class Testing
                 count1++;
             }
             Deck.deck = arr3;
-            Console.WriteLine(Deck.deck.ToString());
+
             amountOfRiffles--;
+            while (count5 < Deck.deck.Length)
+            {
+                Console.WriteLine(count5.ToString() + " : " + arr3[count5].ToString());
+                count5++;
+            }
             
 
         }

@@ -3,12 +3,12 @@ using System.Diagnostics.Metrics;
 
 public class Card
 {
-    public int Id;
+
     public int Suit;
     public int Value;
-    public Card(int id, int suit, int value)
+    public Card( int suit, int value)
     {
-        Id = id;
+
         Value = value;
         Suit = suit;
     }
@@ -18,7 +18,7 @@ public class Deck
 
     //Card[52]
     public static int[] deck = new int[52];
-
+    public static Card[] cards = new Card[52];
     public Deck()
     {
         /*
@@ -46,7 +46,8 @@ public class Deck
             //int temp = counter;
             deck[counter-1] = counter;
             //Console.WriteLine(deck[counter].ToString());
-            Card card = new Card(counter, suit, value);
+            Card card = new Card(suit, value);
+            cards[counter-1] = card;
             counter++;
             value++;
             if (value == 14)
@@ -73,7 +74,7 @@ class Testing
         Deck deck = new Deck();
         ShuffleCardPack(shuffleType);
 
-        //Deal();
+        Deal();
     }
     static void ShuffleCardPack(int typeOfShuffle)
     {
@@ -198,7 +199,145 @@ class Testing
     }
     static void Deal()
     {
+        int personCounter = 1;
+        Console.WriteLine("How many people are being dealt for?");
+        int people = Convert.ToInt32(Console.ReadLine());
+        while (people <= 0)
+        {
+            Console.WriteLine("There should be at least 1 person requiring shuffled cards");
+            Console.WriteLine("How many people are being dealt for?");
+            people = Convert.ToInt32(Console.ReadLine());
+        }
+        Console.WriteLine("How many cards are there per person?");
+        int cards = Convert.ToInt32(Console.ReadLine());
+        while (people * cards > 52)
+        {
+            Console.WriteLine("There are only 52 cards in this deck...");
+            Console.WriteLine("How many people are being dealt for?");
+            people = Convert.ToInt32(Console.ReadLine());
+            while (people <= 0)
+            {
+                Console.WriteLine("There should be at least 1 person requiring shuffled cards");
+                Console.WriteLine("How many people are being dealt for?");
+                people = Convert.ToInt32(Console.ReadLine());
+            }
+            Console.WriteLine("How many cards are there per person?");
+            cards = Convert.ToInt32(Console.ReadLine());
+        }
+        //int cardsToDraw = cards*people;
+        int cardCounter = 0;
+        int cardCount = cards;
 
+        while (people > 0)//measures number of people
+        {
+
+            Console.WriteLine("Person " + personCounter.ToString() + " has the:");
+            while (cards > 0)//measures cards drawn by 1 person
+            {
+                int index1 = Deck.deck[cardCounter];
+                int suit = Deck.cards[index1-1].Suit;
+                int value = Deck.cards[index1-1].Value;
+                if (suit == 1)
+                {
+                    if (value == 13)
+                    {
+                        Console.WriteLine("King of Diamonds");
+                    }
+                    else if (value == 12)
+                    {
+                        Console.WriteLine("Queen of Diamonds");
+                    }
+                    else if (value == 11)
+                    {
+                        Console.WriteLine("Jack of Diamonds");
+                    }
+                    else if (value == 1)
+                    {
+                        Console.WriteLine("Ace of Diamonds");
+                    }
+                    else
+                    {
+                        Console.WriteLine(value.ToString() + " of Diamonds");
+                    }
+                }
+                if (suit == 2)
+                {
+                    if (value == 13)
+                    {
+                        Console.WriteLine("King of Hearts");
+                    }
+                    else if (value == 12)
+                    {
+                        Console.WriteLine("Queen of Hearts");
+                    }
+                    else if (value == 11)
+                    {
+                        Console.WriteLine("Jack of Hearts");
+                    }
+                    else if (value == 1)
+                    {
+                        Console.WriteLine("Ace of Hearts");
+                    }
+                    else
+                    {
+                        Console.WriteLine(value.ToString() + " of Hearts");
+                    }
+                }
+                if (suit == 3)
+                {
+                    if (value == 13)
+                    {
+                        Console.WriteLine("King of Clubs");
+                    }
+                    else if (value == 12)
+                    {
+                        Console.WriteLine("Queen of Clubs");
+                    }
+                    else if (value == 11)
+                    {
+                        Console.WriteLine("Jack of Clubs");
+                    }
+                    else if (value == 1)
+                    {
+                        Console.WriteLine("Ace of Clubs");
+                    }
+                    else
+                    {
+                        Console.WriteLine(value.ToString() + " of Clubs");
+                    }
+                }
+                if (suit == 4)
+                {
+                    if (value == 13)
+                    {
+                        Console.WriteLine("King of Spades");
+                    }
+                    else if (value == 12)
+                    {
+                        Console.WriteLine("Queen of Spades");
+                    }
+                    else if (value == 11)
+                    {
+                        Console.WriteLine("Jack of Spades");
+                    }
+                    else if (value == 1)
+                    {
+                        Console.WriteLine("Ace of Spades");
+                    }
+                    else
+                    {
+                        Console.WriteLine(value.ToString() + " of Spades");
+                    }
+                }
+                cardCounter++;
+                cards--;
+
+            }
+            cards = cardCount;
+            people--;
+            personCounter++;
+
+        }
     }
     
 

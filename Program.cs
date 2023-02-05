@@ -117,8 +117,28 @@ class Testing
     }
     static void FisherYatesShuffle()
     {
+        //int count5 = 0;
+        int count6 = 51;
+        while (count6 > 0)
+        {
+
+            Random rand = new Random();
+            int index = rand.Next(0, count6 - 1);
+            int temp = Deck.deck[index];
+            Deck.deck[index] = Deck.deck[count6];
+            Deck.deck[count6] = temp;
+            count6--;
+        }
+        /*
+        while (count5 < Deck.deck.Length)
+        {
+            Console.WriteLine(count5.ToString() + " : " + Deck.deck[count5].ToString());
+            count5++;
+        }
+        */
 
     }
+
     static void RiffleShuffle()
     {
         Random random= new Random();
@@ -133,7 +153,7 @@ class Testing
             int count2 = 0;
             int count3 = 0;
             int count4 = 0;
-            int count5 = 0;
+            //int count5 = 0;
             while (count <= 25)
             {
                 arr1[count] = Deck.deck[count];
@@ -165,12 +185,13 @@ class Testing
             Deck.deck = arr3;
 
             amountOfRiffles--;
+            /*
             while (count5 < Deck.deck.Length)
             {
                 Console.WriteLine(count5.ToString() + " : " + arr3[count5].ToString());
                 count5++;
             }
-            
+            */
 
         }
 
